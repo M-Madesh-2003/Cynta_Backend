@@ -38,7 +38,8 @@ const { createUrl, redirectUrl } = require("./controllers/wat_urlController");
 const { saveUserLocationData } = require("./controllers/wat_userLocationController");
 const { dateFilter, getUserEvents, getweeklyData, getmonthlyData } = require("./controllers/wat_dateController");
 const { clientData, getUsersByClientName } = require("./controllers/wat_dashboardController");
-const { saveVendorDetails } = require('./controllers/wat_vendorDetails')
+const { saveVendorDetails } = require('./controllers/wat_vendorDetails');
+const vendorData = require("./models/wat_vendorsData");
 const app = express();
 const port = 5000;
 
@@ -127,7 +128,9 @@ io.on("connection", (socket) => {
   console.log(socket.id);
 
   socket.on('customerData',async (data) => {
+    console.log(data)
    const vendorsdata = await saveUserLocationData(data)
+   console.log(vendorsdata)
    io.emit('vendorDetails', vendorsdata)
   })
 

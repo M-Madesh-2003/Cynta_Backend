@@ -11,10 +11,6 @@ const saveVendorDetails = async (data) => {
       {
         $set: {
           name: name,
-          companyType: companyType,
-          companyName: companyName,
-          contact: contact,
-          address: address,
           location: location,
         },
       }
